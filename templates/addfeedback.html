@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container">
+  <h1 class="display-1 text-center">Add Feedback</h1>
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      
+      <form id="addfeedback" method="POST" action="/users/{{session['username']}}/feedback/add">
+         {{form.hidden_tag()}}
+         {% for field in form  if field.widget.input_type != 'hidden' %}
+         <div class="form-group">
+            {{ field.label }}
+            {{ field(class_="form-control") }}
+      
+            {% for error in field.errors %}
+          <small class="form-text text-danger">  {{ error }}</small>
+             
+            {% endfor %}
+          </div>
+       {% endfor %}
+      <br>
+      <button class="btn btn-success btn-lg" type="submit">Submit</button>
+      <a href="/" class="btn btn-primary btn-lg">Go back</a>
+      </form>
+    </div>
+    </div>
+    
+
+  </div>
+</div>
+
+{% endblock %}
+
